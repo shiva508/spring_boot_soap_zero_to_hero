@@ -35,6 +35,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -43,7 +47,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!-- <plugin>
+			<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
 				<artifactId>maven-jaxb2-plugin</artifactId>
 				<version>0.13.2</version>
@@ -56,13 +60,15 @@
 				</executions>
 				<configuration>
 					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-					<clearOutputDir>false</clearOutputDir>
+					<generatePackage>com.pool.api</generatePackage>
+					<clearOutputDir>true</clearOutputDir>
 					<schemaDirectory>${project.basedir}/src/main/resources/xsd</schemaDirectory>
 					<schemaIncludes>
 						<include>*.xsd</include>
+						<include>*.wsdl</include>
 					</schemaIncludes>
 				</configuration>
-			</plugin> -->
+			</plugin>
 		</plugins>
 	</build>
 
