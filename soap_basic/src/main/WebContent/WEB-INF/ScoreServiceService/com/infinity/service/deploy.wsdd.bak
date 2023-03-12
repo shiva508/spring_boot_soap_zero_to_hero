@@ -1,0 +1,41 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ScoreServiceService WSDL service -->
+
+  <service name="ScoreService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.infinity.com"/>
+      <parameter name="wsdlServiceElement" value="ScoreServiceService"/>
+      <parameter name="schemaQualified" value="http://model.infinity.com,http://service.infinity.com"/>
+      <parameter name="wsdlServicePort" value="ScoreService"/>
+      <parameter name="className" value="com.infinity.service.ScoreServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ScoreService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getScore" qname="operNS:getScore" xmlns:operNS="http://service.infinity.com" returnQName="retNS:getScoreReturn" xmlns:retNS="http://service.infinity.com" returnType="rtns:Score" xmlns:rtns="http://model.infinity.com" soapAction="" >
+      </operation>
+      <operation name="updateScore" qname="operNS:updateScore" xmlns:operNS="http://service.infinity.com" returnQName="retNS:updateScoreReturn" xmlns:retNS="http://service.infinity.com" returnType="rtns:Score" xmlns:rtns="http://model.infinity.com" soapAction="" >
+        <parameter qname="pns:wins" xmlns:pns="http://service.infinity.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:loose" xmlns:pns="http://service.infinity.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:ties" xmlns:pns="http://service.infinity.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="updateScore getScore"/>
+
+      <typeMapping
+        xmlns:ns="http://model.infinity.com"
+        qname="ns:Score"
+        type="java:com.infinity.model.Score"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

@@ -1,0 +1,70 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from TeamsService WSDL service -->
+
+  <service name="Teams" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://richerdatatype.infinity.com"/>
+      <parameter name="wsdlServiceElement" value="TeamsService"/>
+      <parameter name="schemaQualified" value="http://richerdatatype.infinity.com"/>
+      <parameter name="wsdlServicePort" value="Teams"/>
+      <parameter name="className" value="com.infinity.richerdatatype.TeamsSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Teams"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getTeam" qname="operNS:getTeam" xmlns:operNS="http://richerdatatype.infinity.com" returnQName="retNS:getTeamReturn" xmlns:retNS="http://richerdatatype.infinity.com" returnType="rtns:anyType" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://richerdatatype.infinity.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getTeamList" qname="operNS:getTeamList" xmlns:operNS="http://richerdatatype.infinity.com" returnQName="retNS:getTeamListReturn" xmlns:retNS="http://richerdatatype.infinity.com" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://richerdatatype.infinity.com" returnItemQName="tns:item" xmlns:tns="http://richerdatatype.infinity.com" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="getTeamList getTeam"/>
+
+      <typeMapping
+        xmlns:ns="http://richerdatatype.infinity.com"
+        qname="ns:>getTeamListResponse"
+        type="java:com.infinity.richerdatatype.GetTeamListResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://richerdatatype.infinity.com"
+        qname="ns:>getTeam"
+        type="java:com.infinity.richerdatatype.GetTeam"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://richerdatatype.infinity.com"
+        qname="ns:>getTeamList"
+        type="java:com.infinity.richerdatatype.GetTeamList"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://richerdatatype.infinity.com"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://richerdatatype.infinity.com"
+        qname="ns:>getTeamResponse"
+        type="java:com.infinity.richerdatatype.GetTeamResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

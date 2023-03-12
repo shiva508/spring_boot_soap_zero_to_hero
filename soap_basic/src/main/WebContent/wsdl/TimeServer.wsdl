@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.infinity.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.infinity.com" xmlns:intf="http://service.infinity.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+
+   <wsdl:portType name="TimeServer">
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TimeServerSoapBinding" type="impl:TimeServer">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TimeServerService">
+
+      <wsdl:port binding="impl:TimeServerSoapBinding" name="TimeServer">
+
+         <wsdlsoap:address location="http://localhost:8084/soapbasic/services/TimeServer"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

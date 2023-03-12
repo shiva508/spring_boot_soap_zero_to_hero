@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.infinity.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.infinity.com" xmlns:intf="http://service.infinity.com" xmlns:tns1="http://model.infinity.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.infinity.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.infinity.com"/>
+   <element name="getScore">
+    <complexType/>
+   </element>
+   <element name="getScoreResponse">
+    <complexType>
+     <sequence>
+      <element name="getScoreReturn" type="tns1:Score"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateScore">
+    <complexType>
+     <sequence>
+      <element name="wins" type="xsd:int"/>
+      <element name="loose" type="xsd:int"/>
+      <element name="ties" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateScoreResponse">
+    <complexType>
+     <sequence>
+      <element name="updateScoreReturn" type="tns1:Score"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model.infinity.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Score">
+    <sequence>
+     <element name="loose" type="xsd:int"/>
+     <element name="ties" type="xsd:int"/>
+     <element name="wins" type="xsd:int"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getScoreRequest">
+
+      <wsdl:part element="impl:getScore" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateScoreRequest">
+
+      <wsdl:part element="impl:updateScore" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateScoreResponse">
+
+      <wsdl:part element="impl:updateScoreResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getScoreResponse">
+
+      <wsdl:part element="impl:getScoreResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ScoreService">
+
+      <wsdl:operation name="getScore">
+
+         <wsdl:input message="impl:getScoreRequest" name="getScoreRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getScoreResponse" name="getScoreResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateScore">
+
+         <wsdl:input message="impl:updateScoreRequest" name="updateScoreRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateScoreResponse" name="updateScoreResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ScoreServiceSoapBinding" type="impl:ScoreService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getScore">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getScoreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getScoreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateScore">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateScoreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateScoreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ScoreServiceService">
+
+      <wsdl:port binding="impl:ScoreServiceSoapBinding" name="ScoreService">
+
+         <wsdlsoap:address location="http://localhost:8084/soapbasic/services/ScoreService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

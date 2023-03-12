@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://richerdatatype.infinity.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://richerdatatype.infinity.com" xmlns:intf="http://richerdatatype.infinity.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://richerdatatype.infinity.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getTeam">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTeamResponse">
+    <complexType>
+     <sequence>
+      <element name="getTeamReturn" type="xsd:anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTeamList">
+    <complexType/>
+   </element>
+   <element name="getTeamListResponse">
+    <complexType>
+     <sequence>
+      <element name="getTeamListReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getTeamResponse">
+
+      <wsdl:part element="impl:getTeamResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTeamListResponse">
+
+      <wsdl:part element="impl:getTeamListResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTeamListRequest">
+
+      <wsdl:part element="impl:getTeamList" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTeamRequest">
+
+      <wsdl:part element="impl:getTeam" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Teams">
+
+      <wsdl:operation name="getTeam">
+
+         <wsdl:input message="impl:getTeamRequest" name="getTeamRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getTeamResponse" name="getTeamResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTeamList">
+
+         <wsdl:input message="impl:getTeamListRequest" name="getTeamListRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getTeamListResponse" name="getTeamListResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TeamsSoapBinding" type="impl:Teams">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getTeam">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTeamRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTeamResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTeamList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTeamListRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTeamListResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TeamsService">
+
+      <wsdl:port binding="impl:TeamsSoapBinding" name="Teams">
+
+         <wsdlsoap:address location="http://localhost:8084/soapbasic/services/Teams"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
